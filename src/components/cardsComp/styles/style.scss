@@ -1,0 +1,35 @@
+.container{
+
+    padding-top: 10px;
+  //  margin: 0 20px;
+    display: flex;
+    //width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .row{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+
+        .card{
+            width: fit-content;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: .4s all ease;
+            cursor: pointer;
+            
+    
+            &:hover{
+                box-shadow: 2px 5px 3px #000;
+                transform: scale(1, 1);
+            }
+    
+            .card-body{
+                text-align: center;
+        }
+    }
+    }
+
+    
+}
