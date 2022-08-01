@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import { Home } from './views/home/home'
 import { HeaderComponent } from './components/headerComp/headerComponent'
+import { Details } from './views/details/details'
 
 function App() {
  
@@ -10,7 +11,8 @@ function App() {
   return (
     <div className="App">
       <HeaderComponent />
-        <Home />
+      {/*<Home />**/}
+        <Details />
     </div>
   )
 
