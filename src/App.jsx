@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <HeaderComponent />
-      {/*<Home />**/}
-        <Details />
+      {/** <Details />*/}
+       <Home />
     </div>
   )
 

@@ -3,6 +3,7 @@ import './styles/styles.scss'
 
 export const Details = () => {
   return (
+
    <div className="container__details">
         <div className="container__contain">
           <div className="row">
@@ -18,8 +19,6 @@ export const Details = () => {
                     <h3>blase</h3>
                   </div>
                 </div>
-
-             
 
                 <div className="stat__container">
                 <table className="table-1">
@@ -59,7 +58,6 @@ export const Details = () => {
                 </div>
                 </div>
 
-               
               </div>
           </div>
         </div>

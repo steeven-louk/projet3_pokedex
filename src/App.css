@@ -3,7 +3,8 @@ body{
     margin: 0;
     text-decoration: none;
     background: orange;
-
+    outline: none;
+    overflow-x: hidden;
 }
 
 a{

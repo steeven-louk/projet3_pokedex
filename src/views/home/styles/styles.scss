@@ -1,4 +1,4 @@
-.container{
+.container__home{
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -15,5 +15,11 @@
             text-align: center;
             padding: 5px;
         }
+    }
+
+    .card_list{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
     }
 }
