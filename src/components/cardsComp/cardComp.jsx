@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./styles/style.scss";
 
 export const CardComp = (props) => {
 
-// console.log('====================================');
-// console.log('props', props);
-// console.log('====================================');
 
-  let img_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png".split('/');
+  //let img_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png".split('/');
+//const [getIndex, setGetIndex] = useState({});
+//const id_string = img_url[8].slice(0, -4).toString()
+//let indexI = props.index.toString()
 
-const id_string = img_url[8].slice(0, -4).toString()
 
 
 
