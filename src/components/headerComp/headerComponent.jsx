@@ -5,10 +5,12 @@ export const HeaderComponent = () => {
   return (
     <>
         <header>
-            <div className="container">
+            <div className="container__nav">
                 <nav>
-                    <span className="navbar-brand">pokedex</span>
-                    <span> cart(5) </span>
+                    <span className="navbar-brand">
+                      <img src="/imgs/pokemon.png" width='100px' alt="pokemon" />
+                     </span>
+                    <div className='pokeball'><img src="/imgs/pokeball.png" alt="pokeball" /> <span><em>(5)</em></span> </div>
                 </nav>
             </div>
         </header>

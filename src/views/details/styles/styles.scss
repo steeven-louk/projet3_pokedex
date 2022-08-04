@@ -1,81 +1,85 @@
-.container__details{   
+.container__details {
 
-    .row{
-        padding: 3px;
-        display: flex;
-        flex-direction: row;
+    .row {
+        padding: 0 7em;
+        display        : flex;
+        flex-direction : row;
         justify-content: space-between;
- margin: 0 10em;
+        margin         : 0 10em;
 
-        .pokemon_desc{
+        .pokemon_img img{
+            width: 400px;
+        }
+
+        .pokemon_desc {
 
             width: 250px;
 
             .stat__container {
-             
 
-                        table{
-                            display: flex;
-                            flex-direction: row;
-                            
-                           
 
-                                 thead, tbody{
-                                        
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 150px;
-                                    font-weight: bold;
-                                    text-transform: capitalize;
-                                    line-height: 2;
-                                   
+                table {
+                    display       : flex;
+                    flex-direction: row;
 
-                                }
-                               
-                            }
+                    thead >tr,
+                    tbody >tr {
 
-                            .table-1{
-                                thead{
-                                    background: #ccc;
-                                    text-align: center;
+                        display       : flex;
+                        flex-direction: column;
+                        width         : 150px;
+                        font-weight   : bold;
+                        text-transform: capitalize;
+                        line-height   : 2;
 
-                                  
-                                }
-                                tbody{
-                                    background: rgb(165, 146, 146);
-                                    text-align: left;
-                                }
-                            }
 
-                            .table-2{
+                    }
 
-                                color: #fff;
-                                font-weight: bold;
-                                margin-top: 2rem;
-                                thead{
-                                    background: grey;
-                                    text-align: center;
+                }
 
-                                    th{
-                                        border-bottom: 2px solid #fff;
-                                    }
+                .table-1 {
 
-                                    }
+                    thead {
+                        background: #ccc;
+                        text-align: center;
+                    }
 
-                                    tbody{
-                                        background: grey;
-                                        text-align: center;
-    
-                                        td{
-                                            border-bottom: 2px solid #fff;
-                                        }
-                                    }
-                                }
+                    tbody {
+                        background: rgb(165, 146, 146);
+                        text-align: left;
+                    }
+                }
 
-                               
-                            }
-           
+                .table-2 {
+
+                    color      : #fff;
+                    font-weight: bold;
+                    margin-top : 2rem;
+
+                    thead {
+                        background: grey;
+                        text-align: center;
+
+                        th {
+                            border-bottom: 2px solid #fff;
+                        }
+
+                    }
+
+                    tbody {
+                        background: grey;
+                        text-align: center;
+
+                        td {
+                            border-bottom: 2px solid #fff;
+                        }
+                    }
+                }
+
+
+            }
+
         }
-        
+
     }
 }
