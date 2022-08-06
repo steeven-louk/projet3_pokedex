@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 
-import getPokemon from "../../services/services";
+import {getPokemon} from "../../services/services";
 
 import { CardComp } from "../../components/cardsComp/cardComp";
 import "./styles/styles.scss";
@@ -12,6 +12,8 @@ export const Home = () => {
   const [pokemon, setPokemons] = useState(null);
   const [loading, setLoading] = useState(false);
 const [searchInput, setSearchInput] = useState('');
+
+
 
 
   useEffect(() => {

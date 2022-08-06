@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const getPokemon = async() => {
+export const getPokemon = async() => {
 
   /* const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon")*/
 
@@ -12,4 +12,5 @@ const getPokemon = async() => {
     return data.results;
     
 }
-export default getPokemon
+
+// //export {getPokemon, getPokemons}

@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
+
 import "./styles/styles.scss";
 
 export const Details = () => {
   const { id } = useParams();
 
   const [getPokemonDetail, setGetPokemonDetail] = useState();
+  const [getPokemonSpecie, setGetPokemonSpecie] = useState();
 
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const url_species = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
 
   const getImage = getPokemonDetail?.sprites.other.dream_world;
 
@@ -23,8 +26,22 @@ export const Details = () => {
     }
   };
 
+  const getSpecies = async () => {
+    try {
+      const pokemon_Species = await axios.get(url_species);
+      setGetPokemonSpecie(pokemon_Species?.data);
+      return pokemon_Species;
+
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  console.log(getPokemonSpecie);
+
   useEffect(() => {
     getData();
+    getSpecies();
   }, []);
 
   return (
@@ -49,6 +66,8 @@ export const Details = () => {
                   <span>Type</span>
                   <span>Height</span>
                   <span>Weight</span>
+                  <span>Egg groups</span>
+                  <span>capture rate</span>
                 </div>
 
                 <div className="body">
@@ -63,6 +82,15 @@ export const Details = () => {
 
                   <span>{getPokemonDetail?.height} Cm</span>
                   <span>{getPokemonDetail?.weight} Lbs</span>
+                  <div className="egg_group type">
+                    {getPokemonSpecie?.egg_groups.map((egg, index) => (
+                      <span key={index} style={{ display: "flex" }}>
+                        {" "}
+                        {egg.name}{" "}
+                      </span>
+                    ))}
+                  </div>
+                  <span> {getPokemonSpecie?.capture_rate} %</span>
                 </div>
               </div>
 
@@ -88,9 +116,7 @@ export const Details = () => {
               <div className="description">
                 <div className="description__container">
                   <p className="desc">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Aut vitae explicabo vero deserunt culpa eveniet libero
-                    voluptate in, repudiandae ipsam.
+                    {getPokemonSpecie?.flavor_text_entries[0].flavor_text}
                   </p>
                 </div>
               </div>
