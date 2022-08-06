@@ -13,13 +13,26 @@ header {
             text-transform: capitalize;
             font-weight: bold;
 
-            .navbar-brand img {
+            .navbar-brand {
+                cursor: pointer;
+
+            img {
                 position: relative;
                 top: 10px;
-            }
+               
+              
 
+               
+            }
+}
             .pokeball img {
                 width: 36px;
+                cursor: pointer;
+                
+                &:hover{
+                    animation: rotation 1s linear;
+                }
+
             }
 
             span {
@@ -28,5 +41,15 @@ header {
             }
         }
 
+    }
+}
+
+
+@keyframes rotation {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
     }
 }

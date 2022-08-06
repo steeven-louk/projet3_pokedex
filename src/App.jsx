@@ -6,6 +6,7 @@ import { Details } from './views/details/details'
 import { Route, Routes } from 'react-router-dom'
 
 import './App.css'
+import { Pokedex } from './views/pokedex/pokedex'
 
 function App() {
  
@@ -16,6 +17,7 @@ function App() {
 
       <Routes>
         <Route path="/" exact element={<Home />} />
+        <Route path="/pokedex" element={<Pokedex />} />
         <Route path="/about/:id" element={<Details />} />
       </Routes>
       

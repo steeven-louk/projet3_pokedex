@@ -1,109 +1,103 @@
-import React, {useEffect, useState} from 'react';
-import { useParams} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import axios from 'axios';
-import './styles/styles.scss'
+import axios from "axios";
+import "./styles/styles.scss";
 
 export const Details = () => {
-
-  const {id} = useParams()
+  const { id } = useParams();
 
   const [getPokemonDetail, setGetPokemonDetail] = useState();
 
-  const url =`https://pokeapi.co/api/v2/pokemon/${id}`
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
 
-  const getImage = getPokemonDetail?.sprites.other.dream_world
+  const getImage = getPokemonDetail?.sprites.other.dream_world;
 
-  const getData = async() =>{
+  const getData = async () => {
     try {
       const pokemon = await axios.get(url);
 
-      setGetPokemonDetail(pokemon.data)
-
+      setGetPokemonDetail(pokemon.data);
     } catch (error) {
-      console.log('error', error);
+      console.log("error", error);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
   }, []);
 
-  console.log('====================================');
-  console.log('pok', getPokemonDetail);
-  console.log('====================================');
-
-
   return (
+    <div className="container__details">
+      <div className="container__contain">
+        <div className="row">
+          <div className="pokemon_img">
+            <h3 className="name">{getPokemonDetail?.name}</h3>
+            <img src={getImage?.front_default} alt={getPokemonDetail?.name} />
+          </div>
+          <div className="pokemon_desc">
+            <div className="pokemon__container">
+              <h1>N° 0{getPokemonDetail?.id} </h1>
+            </div>
+            <hr /> <br />
+            <div className="statistique">
+              <h3>statistique</h3>
+            </div>
+            <div className="stat__container">
+              <div className="table-1">
+                <div className="head">
+                  <span>Type</span>
+                  <span>Height</span>
+                  <span>Weight</span>
+                </div>
 
-   <div className="container__details">
-        <div className="container__contain">
-          <div className="row">
-              <div className="pokemon_img">
-                <h3 className="name">{getPokemonDetail?.name}</h3>
-                <img src={getImage?.front_default} alt={getPokemonDetail?.name} />
-              </div>
-              <div className="pokemon_desc">
-                <h3>stat de base:</h3>
-                <hr /> <br />
-                <div className="name">
-                  <div className="name__container">
-                    <h3>blase</h3>
+                <div className="body">
+                  <div className="type">
+                    {getPokemonDetail?.types.map((type, index) => (
+                      <span key={index} style={{ display: "flex" }}>
+                        {" "}
+                        {type.type.name}{" "}
+                      </span>
+                    ))}
                   </div>
+
+                  <span>{getPokemonDetail?.height} Cm</span>
+                  <span>{getPokemonDetail?.weight} Lbs</span>
                 </div>
-
-                <div className="stat__container">
-                <table className="table-1">
-                  <thead>
-                      <tr>  
-                        <th>Type</th>
-                        <th>Height</th>
-                        <th>Weight</th>
-                      </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>Grass</td>
-                      <td>{getPokemonDetail?.height} Cm</td>
-                      <td>{getPokemonDetail?.weight} Lbs</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <table className="table-2">
-                  <thead>
-                    <tr>
-                      <th>Hp</th>
-                      <th>Attack</th>
-                      <th>Defense</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <tr>
-                      <td>45</td>
-                      <td>49</td>
-                      <td>49</td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
-
-                <br />
-
-                <div className="description">
-                  <div className="description__container">
-                    <p className="desc">
-                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut vitae explicabo vero deserunt culpa eveniet libero voluptate in, repudiandae ipsam.
-                    </p>
-                  </div>
-                </div>
-                </div>
-
               </div>
+
+              <table className="table-2">
+                <thead>
+                  <tr>
+                    {getPokemonDetail?.stats.map((stat, index) => (
+                      <th key={index}> {stat.stat.name} </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {getPokemonDetail?.stats.map((stat, index) => (
+                      <td key={index}> {stat.base_stat} </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+
+              <br />
+
+              <div className="description">
+                <div className="description__container">
+                  <p className="desc">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Aut vitae explicabo vero deserunt culpa eveniet libero
+                    voluptate in, repudiandae ipsam.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-   </div>
-  )
-}
+      </div>
+    </div>
+  );
+};

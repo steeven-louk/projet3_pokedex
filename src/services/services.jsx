@@ -9,10 +9,6 @@ const getPokemon = async() => {
 
     const { data } = await axios.get(url);
 
-    const item = await axios.get('https://pokeapi.co/api/v2/pokemon');
-    console.log('====================================');
-    console.log('item', item);
-    console.log('====================================');
     return data.results;
     
 }

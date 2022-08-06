@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import "./styles/styles.scss";
+
 import getPokemon from "../../services/services";
-import axios from "axios";
 
 import { CardComp } from "../../components/cardsComp/cardComp";
+import "./styles/styles.scss";
+
 
 export const Home = () => {
+  
   const [pokemon, setPokemons] = useState(null);
   const [loading, setLoading] = useState(false);
 const [searchInput, setSearchInput] = useState('');
@@ -15,8 +17,7 @@ const [searchInput, setSearchInput] = useState('');
   useEffect(() => {
     setLoading(true)
     getPokemon().then((data) => {
-      setPokemons(data)
-    
+      setPokemons(data);
     });
     setLoading(false)
   }, []);
@@ -43,7 +44,7 @@ const [searchInput, setSearchInput] = useState('');
               return item
             }
            }).map((item, index) =>(
-           <CardComp pokemon={item} index={index} key={index} />
+           <CardComp pokemon={item} index={index +1} key={index} />
       ))
         )
       }

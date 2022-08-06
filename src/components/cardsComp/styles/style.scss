@@ -14,7 +14,8 @@
                 transform: scale(1, 1);
 
                 .card-body{
-                    animation: apparait .4s linear;
+                    opacity: 1;
+                    transform: translateY(0);
                 }
             }
 
@@ -34,6 +35,10 @@
                 right: 0;
                 bottom: 2.6em;
                 background: rgba(0, 0, 0, 0.199);
+                transform: translateY(-160px);
+               opacity: 0;
+                transition: .4s all ease;
+
                 
                 .card-title{
                     font-size: 1.5em;
@@ -61,8 +66,12 @@
             .btn{
                 color: yellow;
                 font-weight: bold;                
-               
             }
+        }
+
+        .removePokedex{
+            background: #ff0000;
+           
         }
     }
 

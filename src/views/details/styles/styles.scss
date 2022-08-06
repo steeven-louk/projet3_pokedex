@@ -15,10 +15,25 @@
 
             width: 250px;
 
+            .pokemon__container{
+                padding: 1px;
+                width: 100%;
+                border-radius: 5px;
+                background: orange;
+                background: linear-gradient(129deg, rgba(255,235,0,1) 20%, rgba(2,0,36,1) 45%);
+            }
+
+            .statistique h3{
+                font-size: 1.7em;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
             .stat__container {
 
 
-                table {
+                table, .table-1 {
                     display       : flex;
                     flex-direction: row;
 
@@ -39,14 +54,35 @@
 
                 .table-1 {
 
-                    thead {
+                    width: 18.7em;
+
+                    .head {
                         background: #ccc;
                         text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+                        width: 100%;
+                        font-weight: bold;
+                        color: #000;
+                        line-height: 2em;
                     }
 
-                    tbody {
+                    .body {
                         background: rgb(165, 146, 146);
                         text-align: left;
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 18px;
+                        width: 100%;
+                        font-weight: bold;
+                        color: #000;
+                        line-height: 2em;
+
+                        .type{
+                            display: flex;
+                            justify-content: space-around;
+                        }
                     }
                 }
 

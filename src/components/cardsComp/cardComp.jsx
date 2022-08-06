@@ -1,12 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles/style.scss";
 
 export const CardComp = (props) => {
-  //let img_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png".split('/');
-  //const [getIndex, setGetIndex] = useState({});
-  //const id_string = img_url[8].slice(0, -4).toString()
-  //let indexI = props.index.toString()
+
+  
+  const [addToPokedex, setAddToPokedex] = useState('ajoutez à mon pokedex');
+  const [addConfirm, setAddConfirm] = useState(false)
+
+  const addToPokedexScreen = () => {
+
+    try {
+      let pokemon = JSON.parse(localStorage.getItem("pokemon"));
+      // console.log(article);
+
+      if (pokemon) {
+        pokemon.push(props);
+        localStorage.setItem("pokemon", JSON.stringify(pokemon));
+        setAddConfirm(true);
+      setAddToPokedex('Supprimez de mon pokedex')
+        
+      } else {
+        pokemon = [];
+        pokemon.push(props);
+        localStorage.setItem("pokemon", JSON.stringify(pokemon));
+  
+        
+        setAddToPokedex('Supprimez de mon pokedex')
+      }
+
+       if(addToPokedex === "Supprimez de mon pokedex" ) {
+        let index = pokemon.indexOf(-1);
+        pokemon = pokemon.slice(index);
+
+        localStorage.setItem("pokemon", JSON.stringify(pokemon));
+        setAddToPokedex("ajoutez à mon pokedex")
+      }
+
+    } catch (error) {
+      console.log('err', error)
+    }
+ 
+  }
 
   return (
     <div className="card">
@@ -22,9 +57,9 @@ export const CardComp = (props) => {
           <h4 className="card-title"> {props.pokemon.name} </h4>
         </div>
       </Link>
-      <div className="card-footer">
-        <a href="#" className="btn">
-          ajoutez à mon pokedex
+      <div className={addToPokedex =="Supprimez de mon pokedex" ? "card-footer removePokedex" : "card-footer"}>
+        <a  className="btn" onClick={addToPokedexScreen}>
+          {addToPokedex}
         </a>
       </div>
     </div>
