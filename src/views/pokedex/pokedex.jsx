@@ -21,12 +21,12 @@ export const Pokedex = () => {
   console.log("pokedex", pokedex);
 
   return (
-    <div className="e">
+    <div className="pokedex_container">
       {pokedex?.cartItems == 0 ? (
         <h1>Empty....</h1>
       ) : (
         pokedex.cartItems?.map((pokemon, index) => (
-          <div className="card" key={pokemon?.index}>
+          <div className="card_pokedex" key={pokemon?.index}>
             <Link to={`/about/${pokemon.index}`}>
               <div className="card-img-top">
                 <img

@@ -1,4 +1,4 @@
-.card{
+.card_pokedex{
     display: flex;
     position: relative;
     flex-direction: column;
@@ -42,7 +42,9 @@
         }
     }
 }
-.e{
+.pokedex_container{
     display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
     gap: 20px;
 }

@@ -5,13 +5,10 @@ import './styles/style.scss'
 
 export const HeaderComponent = () => {
 
-  //const getCount = JSON.parse(localStorage.getItem('pokemon'));
   const pokedexCount = useSelector((state) => state.cart);
 
-  console.log('p', pokedexCount?.length)
-
   return (
-    <>
+    
         <header>
             <div className="container__nav">
                 <nav>
@@ -31,6 +28,6 @@ export const HeaderComponent = () => {
                 </nav>
             </div>
         </header>
-    </>
+    
   )
 }
