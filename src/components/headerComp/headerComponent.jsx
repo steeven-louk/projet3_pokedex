@@ -15,12 +15,11 @@ export const HeaderComponent = () => {
         <header>
             <div className="container__nav">
                 <nav>
-                    <a href="/"> 
+                <Link to="/">
                         <span className="navbar-brand">
                         <img src="/imgs/pokemon.png" width='100px' alt="pokemon" />
                         </span>
-                     </a>
-                     
+                     </Link>
                      <Link to="/pokedex">
                         <div className='pokeball'>
                             <img src="/imgs/pokeball.png" alt="pokeball" />   

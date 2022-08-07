@@ -10,7 +10,6 @@ import "./styles/style.scss";
 
 export const CardComp = (props) => {
   const [addToPokedex, setAddToPokedex] = useState("ajoutez à mon pokedex");
-  const [addConfirm, setAddConfirm] = useState(false);
 
   const dispatch = useDispatch();
 

@@ -64,10 +64,14 @@ export const Details = () => {
   });
  
 
+  //recupereation du nom du pokemon
+const name = getPokemonDetail?.name.toString();
+
+
   useEffect(() => {
     getData();
     getSpecies();
-    getEvolution(getPokemonDetail && getPokemonDetail?.name).then((data) => {
+    getEvolution(name && name).then((data) => {
       setGetPokemonEvolution(data.data?.chain);
     });
   }, []);
