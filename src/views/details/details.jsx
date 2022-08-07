@@ -2,19 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
+//import {getEvolution} from "../../services/services";
 
 import "./styles/styles.scss";
+import { getEvolution } from "../../services/services";
 
 export const Details = () => {
   const { id } = useParams();
 
   const [getPokemonDetail, setGetPokemonDetail] = useState();
   const [getPokemonSpecie, setGetPokemonSpecie] = useState();
+  const [getPokemonEvolution, setGetPokemonEvolution] = useState();
 
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const url_species = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
 
   const getImage = getPokemonDetail?.sprites.other.dream_world;
+
 
   const getData = async () => {
     try {
@@ -37,21 +41,44 @@ export const Details = () => {
     }
   };
 
-  console.log(getPokemonSpecie);
+
+
+  const t = getPokemonEvolution?.evolves_to.map((item) => {return item.evolves_to})
+  const d = t?.map((item) => {return item[0].species.name})
+console.log('hh', d)
+
+
 
   useEffect(() => {
     getData();
     getSpecies();
+     getEvolution('venusaur').then((data) => {setGetPokemonEvolution(data.data?.chain)});
   }, []);
+
+  //console.log('gggg', getPokemonEvolution)
 
   return (
     <div className="container__details">
       <div className="container__contain">
         <div className="row">
-          <div className="pokemon_img">
+          <div>
+            <div className="pokemon_img">
             <h3 className="name">{getPokemonDetail?.name}</h3>
             <img src={getImage?.front_default} alt={getPokemonDetail?.name} />
           </div>
+
+            <div className="evolution">
+                <h1>EVOLUTION</h1>
+
+                <div className="evolution__container">
+                  <h1>{getPokemonEvolution?.species.name}</h1>
+                      <div className="arrow"><h1> ----4 </h1> </div>
+                  <h1> {d} </h1>
+                </div>
+            </div>
+          </div>
+          
+
           <div className="pokemon_desc">
             <div className="pokemon__container">
               <h1>N° 0{getPokemonDetail?.id} </h1>

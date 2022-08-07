@@ -12,6 +12,7 @@
         display: flex;
         flex-wrap: wrap;
 
+
         .pokemon_img img {
             position: relative;
             top: 5em;
@@ -25,13 +26,50 @@
                 width: 250px;
                 padding-bottom: 10em;
             }
+           
+        }
+
+        .evolution{
+            position: relative;
+            top: 7rem;
+            right: 50%;
+
             @media screen and (max-width: 790px) {
-                left: 10em;
+                top: 0;
+                left: 5em;
                 right: 0;
                 width: 250px;
-                padding-bottom: 10em;
+               
                
             }
+            @media screen and (max-width: 1011px) {
+                //top: 0;
+                left: 4em;
+                right: 0;
+              //  width: 250px;
+               
+               
+            }
+
+
+            &__container{
+                display: flex;
+                position: inherit;
+                justify-content: space-between;
+                text-align: center;
+                right: 6em;
+
+                @media screen and (max-width: 790px) {
+                    top: 0;
+                    left: -50px;
+                    right: 0;
+                    
+                   
+                }
+    
+
+            }
+
         }
 
         .name {
