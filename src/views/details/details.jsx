@@ -89,7 +89,7 @@ export const Details = () => {
               <div className="evolution__container">
                 <h1>{getPokemonEvolution?.species.name}</h1>
                 <div className="arrow">
-                  <h1> ----4 </h1>{" "}
+                  <h1> &#10147; </h1>{" "}
                 </div>
                 <h1> {getEvolveSpecie} </h1>
               </div>
