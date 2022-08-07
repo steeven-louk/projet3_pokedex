@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../redux/cartSlice";
 import "./styles/style.scss";
+
+import { useHistory } from "react-router-dom"
+
 
 export const CardComp = (props) => {
 
@@ -8,9 +13,21 @@ export const CardComp = (props) => {
   const [addToPokedex, setAddToPokedex] = useState('ajoutez à mon pokedex');
   const [addConfirm, setAddConfirm] = useState(false)
 
-  const addToPokedexScreen = () => {
 
-    try {
+
+
+  const dispatch = useDispatch();
+
+
+
+
+  const addToPokedexScreen = (props) => {
+
+
+    dispatch(addToCart(props));
+    history.push("/pokedex")
+
+  /*  try {
       let pokemon = JSON.parse(localStorage.getItem("pokemon"));
       // console.log(article);
 
@@ -39,7 +56,7 @@ export const CardComp = (props) => {
 
     } catch (error) {
       console.log('err', error)
-    }
+    }*/
  
   }
 
@@ -58,10 +75,10 @@ export const CardComp = (props) => {
         </div>
       </Link>
       <div className={addToPokedex =="Supprimez de mon pokedex" ? "card-footer removePokedex" : "card-footer"}>
-        <a  className="btn" onClick={addToPokedexScreen}>
+        <a  className="btn" onClick={()=>addToPokedexScreen(props)}>
           {addToPokedex}
         </a>
-      </div>
+      </div> 
     </div>
   );
 };
