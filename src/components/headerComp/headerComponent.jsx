@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles/style.scss'
 
 export const HeaderComponent = () => {
 
-  const getCount = JSON.parse(localStorage.getItem('pokemon'));
+  //const getCount = JSON.parse(localStorage.getItem('pokemon'));
+  const pokedexCount = useSelector((state) => state.cart);
+
+  console.log('p', pokedexCount?.length)
 
   return (
     <>
@@ -20,7 +24,7 @@ export const HeaderComponent = () => {
                      <Link to="/pokedex">
                         <div className='pokeball'>
                             <img src="/imgs/pokeball.png" alt="pokeball" />   
-                            {getCount?.length > 0 ? <span><em> ({getCount?.length})</em></span> : ""}
+                            {pokedexCount?.cartItems.length > 0 ? <span><em> ({pokedexCount?.cartItems.length})</em></span> : ""}
                         </div>
                      </Link>
                     
