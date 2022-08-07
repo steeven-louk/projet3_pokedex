@@ -1,46 +1,48 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-
-
+// initialisation du state
 const initialState = {
-    cartItems: localStorage.getItem("pokedexItem")? JSON.parse(localStorage.getItem('pokedexItem')) : [] ,
-    cartTotalQuantity: 0
+    pokemonItems: localStorage.getItem("pokedexItem") ? JSON.parse(localStorage.getItem("pokedexItem")) : [],
+    cartTotalQuantity: 0,
+    cartQuantity: 0
 };
 
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: "pokedex",
   initialState,
   reducers:{
 
+    //ajouter le pokemon au pokedex
     addToCart(state, action) {
 
-    const itemIndex =  state.cartItems.findIndex(item => item.id === action.payload.id)
-    //console.log('rere', itemIndex)
+      const itemIndex = state.pokemonItems.findIndex((item) => item.id === action.payload.id);
 
-      if(itemIndex >= 0) {
-       state.cartItems[itemIndex].cartQuantity +=1;
-      }
-      else{
-        const tempPokemon = {...action.payload, cartQuantity: 0};
-        state.cartItems.push(tempPokemon);
-      }
-
-      
-      localStorage.setItem("pokedexItem", JSON.stringify(state.cartItems))
+      if (itemIndex >= 0) {
+        state.pokemonItems[itemIndex].cartQuantity +=1;
+       }
+       else{
+       const tempProduct = {...action.payload, cartQuantity: 1};
+       state.pokemonItems.push(tempProduct);
+}
+localStorage.setItem("pokedexItem", JSON.stringify(state.pokemonItems))
 
     },
 
+
+    //supprimer l'element du pokedex
     removeFromPokedex(state, action) {
-     const nextPokedex = state.cartItems.filter(
-        cartItem => cartItem.id !== action.payload.id
+     const nextPokedex = state.pokemonItems.filter(
+        pokedexItem => pokedexItem.id !== action.payload.id
       )
 
-      state.cartItems = nextPokedex;
-      localStorage.setItem("pokedexItem", JSON.stringify(state.cartItems))
+      state.pokemonItems = nextPokedex;
+      localStorage.setItem("pokedexItem", JSON.stringify(state.pokemonItems))
+      
     }
   }
 })
+
 
 export const { addToCart, removeFromPokedex } = cartSlice.actions;
 

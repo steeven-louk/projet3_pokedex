@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-
 import {getPokemon} from "../../services/services";
-import axios from 'axios'
 import { CardComp } from "../../components/cardsComp/cardComp";
+
 import "./styles/styles.scss";
+import CardLoading from "../../components/loading/cardLoading";
 
 
 export const Home = () => {
@@ -33,7 +33,7 @@ export const Home = () => {
        
        <div className="card__container">
          <div className="card_list">
-       {loading ? (<h1>LOADING.....</h1>)
+       {loading ? (<CardLoading/>)
         
         :
         (

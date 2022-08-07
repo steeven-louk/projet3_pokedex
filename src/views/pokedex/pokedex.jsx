@@ -1,31 +1,37 @@
-import React, { useEffect, useState } from "react";
- import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
 import { removeFromPokedex } from "../../redux/cartSlice";
 
+import { Link } from "react-router-dom";
+
+import EmptyPokedex from "../../components/loading/emptyPokedex";
 
 import "./styles/styles.scss";
+
 export const Pokedex = () => {
-  const [getPokemonInPokedex, setGetPokemonInPokedex] = useState(null);
+  
 
-   const pokedex = useSelector((state) => state.cart);
-
+  const pokedex = useSelector((state) => state.pokedex);
 
   const dispatch = useDispatch();
 
   const handleRemoveFromPokedex = (pokemon) => {
-    dispatch(removeFromPokedex(pokemon));
+    const result = window.confirm("voulez vous supprimer ce pokemon de votre pokedex?")
+
+    if (result) {
+       dispatch(removeFromPokedex(pokemon));
+    }
+   
   };
 
 
-  console.log("pokedex", pokedex);
-
   return (
     <div className="pokedex_container">
-      {pokedex?.cartItems == 0 ? (
-        <h1>Empty....</h1>
+      {pokedex?.pokemonItems == 0 ? (
+        <EmptyPokedex />
       ) : (
-        pokedex.cartItems?.map((pokemon, index) => (
+        pokedex.pokemonItems?.map((pokemon) => (
           <div className="card_pokedex" key={pokemon?.index}>
             <Link to={`/about/${pokemon.index}`}>
               <div className="card-img-top">
@@ -39,13 +45,11 @@ export const Pokedex = () => {
                 <h4 className="card-title"> {pokemon.pokemon.name} </h4>
               </div>
             </Link>
-            <div className="card-footer">
-              <a
-                className="btn"
-                onClick={() => handleRemoveFromPokedex(pokemon)}
-              >
-                Supprimez de mon pokedex
-              </a>
+            <div
+              className="card-footer"
+              onClick={() =>handleRemoveFromPokedex(pokemon)}
+            >
+              <a className="btn">Supprimez de mon pokedex</a>
             </div>
           </div>
         ))

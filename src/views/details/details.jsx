@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
-//import {getEvolution} from "../../services/services";
 
-import "./styles/styles.scss";
 import { getEvolution } from "../../services/services";
 
+import "./styles/styles.scss";
+
 export const Details = () => {
+
   const { id } = useParams();
 
   const [getPokemonDetail, setGetPokemonDetail] = useState();
   const [getPokemonSpecie, setGetPokemonSpecie] = useState();
   const [getPokemonEvolution, setGetPokemonEvolution] = useState();
 
+  //url pour recuperer un pokemon
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+  // url pour recuperer les capacités du  pokemon
   const url_species = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
 
+  //recupereation de l'image
   const getImage = getPokemonDetail?.sprites.other.dream_world;
 
-
+  //function pour recuperer le pokemon
   const getData = async () => {
     try {
       const pokemon = await axios.get(url);
@@ -28,34 +34,44 @@ export const Details = () => {
     } catch (error) {
       console.log("error", error);
     }
-  };
+  }  ;
 
+  //function pour recuperer les capacités du  pokemon
   const getSpecies = async () => {
+
     try {
       const pokemon_Species = await axios.get(url_species);
       setGetPokemonSpecie(pokemon_Species?.data);
-      return pokemon_Species;
 
+      return pokemon_Species;
     } catch (error) {
       console.log("error", error);
     }
   };
 
 
+  //ensemble de constante pour recuperer l'evolution
 
-  const t = getPokemonEvolution?.evolves_to.map((item) => {return item.evolves_to})
-  const d = t?.map((item) => {return item[0].species.name})
-console.log('hh', d)
+  //recupereation du tableau d'evolution
+  const evolve = getPokemonEvolution?.evolves_to.map((item) => {
+    return item.evolves_to;
+  }
+  );
 
-
+  //recuperation du tableau des nom de l'evolution
+  const getEvolveSpecie = evolve?.map((item) => {
+    return item[0].species.name;
+  });
+ 
 
   useEffect(() => {
     getData();
     getSpecies();
-     getEvolution('venusaur').then((data) => {setGetPokemonEvolution(data.data?.chain)});
+    getEvolution(getPokemonDetail && getPokemonDetail?.name).then((data) => {
+      setGetPokemonEvolution(data.data?.chain);
+    });
   }, []);
 
-  //console.log('gggg', getPokemonEvolution)
 
   return (
     <div className="container__details">
@@ -63,21 +79,22 @@ console.log('hh', d)
         <div className="row">
           <div>
             <div className="pokemon_img">
-            <h3 className="name">{getPokemonDetail?.name}</h3>
-            <img src={getImage?.front_default} alt={getPokemonDetail?.name} />
-          </div>
+              <h3 className="name">{getPokemonDetail?.name}</h3>
+              <img src={getImage?.front_default} alt={getPokemonDetail?.name} />
+            </div>
 
             <div className="evolution">
-                <h1>EVOLUTION</h1>
+              <h1>EVOLUTION</h1>
 
-                <div className="evolution__container">
-                  <h1>{getPokemonEvolution?.species.name}</h1>
-                      <div className="arrow"><h1> ----4 </h1> </div>
-                  <h1> {d} </h1>
+              <div className="evolution__container">
+                <h1>{getPokemonEvolution?.species.name}</h1>
+                <div className="arrow">
+                  <h1> ----4 </h1>{" "}
                 </div>
+                <h1> {getEvolveSpecie} </h1>
+              </div>
             </div>
           </div>
-          
 
           <div className="pokemon_desc">
             <div className="pokemon__container">

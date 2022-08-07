@@ -1,33 +1,32 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { addToCart } from "../../redux/cartSlice";
-import "./styles/style.scss";
 
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromPokedex } from "../../redux/cartSlice";
+
+import "./styles/style.scss";
 
 
 export const CardComp = (props) => {
-
-  
-  const [addToPokedex, setAddToPokedex] = useState('ajoutez à mon pokedex');
-  const [addConfirm, setAddConfirm] = useState(false)
-
-
-
+  const [addToPokedex, setAddToPokedex] = useState("ajoutez à mon pokedex");
+  const [addConfirm, setAddConfirm] = useState(false);
 
   const dispatch = useDispatch();
 
-const navigate = useNavigate()
-
-
   const addToPokedexScreen = (props) => {
+        dispatch(addToCart(props));
+        setAddToPokedex("Supprimez de mon pokedex");
 
+    if(addToPokedex === "Supprimez de mon pokedex"){
+      const result = window.confirm("voulez vous supprimer ce pokemon de votre pokedex?")
 
-    dispatch(addToCart(props));
-     //navigate("/pokedex")
-
-  }
+    if (result) {
+       dispatch(removeFromPokedex(props));
+       setAddToPokedex("ajoutez à mon pokedex");
+    }
+    }
+  };
 
   return (
     <div className="card">
@@ -43,11 +42,17 @@ const navigate = useNavigate()
           <h4 className="card-title"> {props.pokemon.name} </h4>
         </div>
       </Link>
-      <div className={addToPokedex =="Supprimez de mon pokedex" ? "card-footer removePokedex" : "card-footer"}>
-        <a  className="btn" onClick={()=>addToPokedexScreen(props)}>
-          {addToPokedex}
+      <div
+        className={
+          addToPokedex == "Supprimez de mon pokedex"
+            ? "card-footer removePokedex"
+            : "card-footer"
+        }
+      >
+        <a type="submit" className="btn" onClick={() => addToPokedexScreen(props)}>
+        {addToPokedex}
         </a>
-      </div> 
+      </div>
     </div>
   );
 };
